@@ -3,8 +3,8 @@
 ```mermaid
 classDiagram
     class Regions {
-        +int idRegion
-        +string nomRegion
+        idRegion
+        nomRegion
     }
 
     class Lieux {
