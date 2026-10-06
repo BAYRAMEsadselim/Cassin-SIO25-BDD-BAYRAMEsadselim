@@ -1,64 +1,45 @@
-# Modèle Conceptuel de Données (MCD) - Excursions
+# Modèle Conceptuel de Données (MCD) - Corrigé Excursions
 
 ```mermaid
 classDiagram
-    class REGION {
-        +int id_region
-        +string nom_region
+    class Regions {
+        +int idRegion
+        +string nomRegion
     }
 
-    class LIEU {
-        +int id_lieu
-        +string nom_lieu
+    class Lieux {
+        +int idLieu
+        +string nomLieu
     }
 
-    class EXCURSION {
-        +int id_excursion
-        +string nom_excursion
+    class Excursions {
+        +int idExcursion
+        +string nomExcursion
+        +date dateDepart
+        +date dateRetour
         +float tarif
-        +int nb_max_participants
-        +string plan_circuit_doc
+        +int nbreMaxParticipants
+        +string planCircuit
     }
 
-    class SESSION_EXCURSION {
-        +int id_session
-        +date date_depart
-        +date date_retour
+    class Participants {
+        +int idParticipant
+        +string nomParticipant
+        +string prenomParticipant
+        +string numTelParticipant
+        +string mailParticipant
     }
 
-    class ABONNE {
-        +int id_abonne
-        +string nom
-        +string prenom
-        +string telephone
-        +string email
+    class Guides {
+        +string numLicenceGuide
+        +string nomGuide
+        +string prenomGuide
+        +string numPortable
     }
 
-    class GUIDE {
-        +string num_licence
-        +string nom
-        +string prenom
-        +string tel_portable
-    }
-
-    class PHOTO {
-        +int id_photo
-        +string url_photo
-        +string description
-    }
-
-    class POINT_REMARQUABLE {
-        +int id_point
-        +string nom_point
-        +string description
-    }
-
-    LIEU "1..*" --> "1..1" REGION : Situer
-    EXCURSION "0..*" --> "1..1" LIEU : PartirDe
-    EXCURSION "0..*" --> "1..1" LIEU : ArriverA
-    SESSION_EXCURSION "1..*" --> "1..1" EXCURSION : Organiser
-    PHOTO "0..*" --> "1..1" EXCURSION : Illustrer
+    Lieux "0..*" --> "1..1" Regions : EstSitue
+    Excursions "0..*" --> "1..1" Lieux : Commence
+    Excursions "0..*" --> "1..1" Lieux : SeTermine
     
-    ABONNE "0..*" -- "0..*" SESSION_EXCURSION : S_Inscrire
-    GUIDE "0..*" -- "1..*" SESSION_EXCURSION : Mener
-    POINT_REMARQUABLE "0..*" -- "0..*" EXCURSION : Composer
+    Participants "0..*" -- "1..*" Excursions : Sinscrit
+    Guides "0..*" -- "1..*" Excursions : Mene
