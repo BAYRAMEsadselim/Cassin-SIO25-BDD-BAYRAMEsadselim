@@ -37,9 +37,9 @@ classDiagram
         numPortable
     }
 
-    Lieux "0..*" --> "1..1" Regions : EstSitue
-    Excursions "0..*" --> "1..1" Lieux : Commence
-    Excursions "0..*" --> "1..1" Lieux : SeTermine
+    Lieux "0..n" --> "1..1" Regions : EstSitue
+    Excursions "0..n" --> "1..1" Lieux : Commence
+    Excursions "0..n" --> "1..1" Lieux : SeTermine
     
-    Participants "0..*" -- "1..*" Excursions : Sinscrit
-    Guides "0..*" -- "1..*" Excursions : Mene
+    Participants "0..n" -- "1..n" Excursions : Sinscrit
+    Guides "0..n" -- "1..n" Excursions : Mene
