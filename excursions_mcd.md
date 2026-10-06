@@ -1,4 +1,4 @@
-# Modèle Conceptuel de Données (MCD) - Corrigé Excursions
+# Modèle Conceptuel de Données (MCD)
 
 ```mermaid
 classDiagram
