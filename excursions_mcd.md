@@ -8,33 +8,33 @@ classDiagram
     }
 
     class Lieux {
-        +int idLieu
-        +string nomLieu
+        idLieu
+        nomLieu
     }
 
     class Excursions {
-        +int idExcursion
-        +string nomExcursion
-        +date dateDepart
-        +date dateRetour
-        +float tarif
-        +int nbreMaxParticipants
-        +string planCircuit
+        idExcursion
+        nomExcursion
+        dateDepart
+        dateRetour
+        tarif
+        nbreMaxParticipants
+        planCircuit
     }
 
     class Participants {
-        +int idParticipant
-        +string nomParticipant
-        +string prenomParticipant
-        +string numTelParticipant
-        +string mailParticipant
+        idParticipant
+        nomParticipant
+        prenomParticipant
+        numTelParticipant
+        mailParticipant
     }
 
     class Guides {
-        +string numLicenceGuide
-        +string nomGuide
-        +string prenomGuide
-        +string numPortable
+        numLicenceGuide
+        nomGuide
+        prenomGuide
+        numPortable
     }
 
     Lieux "0..*" --> "1..1" Regions : EstSitue
