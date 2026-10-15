@@ -1,13 +1,52 @@
-# Modèle Relationnel de Données
+# Modèle Conceptuel de Données
 
-Membres (#idMembre, nom, prenom, pseudonyme, motDePasse, email, niveauMembre, estModérateur, estExclu)
+```mermaid
+classDiagram
+    class Membres {
+        idMembre
+        nomMembre
+        prenomMembre
+        pseudonyme
+        motDePasse
+        adresseElectronique
+        exclusion
+    }
 
-Themes (#idTheme, titreTheme)
+    class NiveauxMembre {
+        idNiveau
+        libelleNiveauMembre
+    }
 
-Sujets (#idSujet, titreSujet, dateAjout, estVerrouille, estEnTete, #idMembrePropose, #idTheme)
+    class TypesMembre {
+        idType
+        typeMembre
+    }
 
-Contributions (#idContribution, dateContribution, contenuMarkdown, estValidee, #idMembreAuteur, #idSujet, #idContributionParente)
+    class Themes {
+        idTheme
+        libelleTheme
+    }
 
-PiecesJointes (#idPieceJointe, nomFichier, cheminFichier, #idContribution)
+    class Sujets {
+        idSujet
+        libelleSujet
+        dateAjout
+        verrouille
+    }
 
-Moderations (#idMembre, #idContribution)
+    class Contributions {
+        idContribution
+        dateContribution
+        titre
+        contenu
+        lienPieceJointe
+        contributionValidee
+    }
+
+    Membres "1..1" -- "0..n" NiveauxMembre : ACommeNiveau
+    Membres "1..1" -- "0..n" TypesMembre : EstDeType
+    Membres "0..n" -- "1..1" Sujets : Propose
+    Membres "0..n" -- "1..1" Contributions : Redige
+    Sujets "0..1" -- "0..n" Themes : Regroupe
+    Contributions "0..n" -- "1..1" Sujets : Affiche
+    Contributions "0..n" -- "0..1" Contributions : RepondA
