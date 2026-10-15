@@ -1,13 +1,13 @@
-# Modèle Conceptuel de Données (MCD) - Exercice Réceptions
+# Modèle Conceptuel de Données
 
 ```mermaid
 classDiagram
-    class Personnes {
-        idPersonne
-        nomPersonne
-        prenomPersonne
+    class Invites {
+        idInvite
+        nom
+        prenom
         sexe
-        age
+        dateNaissance
         profession
     }
 
@@ -25,14 +25,15 @@ classDiagram
     class Vins {
         idVin
         nomVin
-        regionViticole
+        nomRegion
         typeVin
     }
 
-    Personnes "0..n" -- "0..n" Receptions : EtreInvite
-    Receptions "0..n" -- "1..n" Plats : ProposerPlat
-    Receptions "0..n" -- "0..n" Vins : ProposerVin
-    Plats "0..n" -- "0..n" Vins : Accorder
-    Personnes "0..n" -- "0..n" Plats : Aimer
-    Personnes "0..n" -- "0..n" Plats : Detester
-    Personnes "0..n" -- "0..n" Personnes : RelationSociale
+    Invites "0..n" -- "0..n" Invites : Apprecie
+    Invites "0..n" -- "0..n" Invites : ApreciePas
+    Invites "0..n" -- "0..n" Plats : Mange
+    Invites "0..n" -- "0..n" Plats : MangePas
+    Invites "0..n" -- "1..n" Receptions : Invite
+    Receptions "1..n" -- "0..n" Plats : Propose
+    Receptions "1..n" -- "0..n" Vins : Sert
+    Plats "1..n" -- "1..n" Vins : SeMarieAvec
